@@ -9,11 +9,11 @@ import NotFound from "@/pages/NotFound";
 
 const Profile = lazy(() => import("@/pages/Profile"));
 const Search = lazy(() => import("@/pages/Search"));
-const Register = lazy(() => import("@/pages/Auth/Register"));
-const Login = lazy(() => import("@/pages/Auth/Login"));
-const ResetPassword = lazy(() => import("@/pages/Auth/ResetPassword"));
+const Register = lazy(() => import("@/pages/Register"));
+const Login = lazy(() => import("@/pages/Login"));
+const ResetPassword = lazy(() => import("@/pages/ResetPassword"));
 const VerifyEmail = lazy(() => import("@/pages/Auth/VerifyEmail"));
-const ForgotPassword = lazy(() => import("@/pages/Auth/ForgotPassword"));
+const ForgotPassword = lazy(() => import("@/pages/ForgotPassword"));
 const Insights = lazy(() => import("@/pages/Insights"));
 const ForYou = lazy(() => import("@/pages/ForYou"));
 const Account = lazy(() => import("@/pages/Account"));
