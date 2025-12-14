@@ -1,0 +1,88 @@
+.wrapper {
+  padding: 10px 15px;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &.small {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  &.medium {
+    font-size: 18px;
+    padding: 12px 16px;
+  }
+
+  &.large {
+    font-size: 20px;
+    padding: 15px 20px;
+  }
+
+  &.rounded {
+    border-radius: 10px;
+  }
+  &.bordered {
+    color: #2c8383;
+    border-color: currentColor;
+  }
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background-color: #f7f7f7;
+    color: white;
+  }
+
+  &.primary {
+    background-color: cornflowerblue;
+    color: white;
+    &:hover {
+      background-color: royalblue;
+      color: white;
+    }
+  }
+
+  &.warning {
+    background-color: gold;
+    color: black;
+
+    &:hover {
+      background-color: goldenrod;
+      color: white;
+    }
+  }
+
+  &.success {
+    background-color: limegreen;
+    color: black;
+    &:hover {
+      background-color: seagreen;
+      color: white;
+    }
+  }
+
+  &.danger {
+    background-color: crimson;
+    color: black;
+
+    &:hover {
+      background-color: darkred;
+      color: white;
+    }
+  }
+
+  & a {
+    color: black;
+    text-decoration: none;
+  }
+
+  & .icon {
+  }
+}

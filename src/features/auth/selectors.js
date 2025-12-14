@@ -1,0 +1,12 @@
+export const selectShowSignUpModal = (state) => state.auth.showSignUpModal;
+export const selectRegisterLoading = (state) => state.auth.registerLoading;
+export const selectRegisterError = (state) => state.auth.registerError;
+export const selectRegisterSuccess = (state) => state.auth.registerSuccess;
+export const selectLoginLoading = (state) => state.auth.loginLoading;
+export const selectLoginError = (state) => state.auth.loginError;
+export const selectLoginSuccess = (state) => state.auth.loginSuccess;
+export const selectIsAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectUser = (state) => state.auth.user;
+export const selectIsInitializing = (state) => state.auth.isInitializing;
+export const selectFetching = (state) => state.auth.fetching;
+export const selectAuthState = (state) => state.auth;
