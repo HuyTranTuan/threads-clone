@@ -1,1 +1,0 @@
-import{H as e,Q as t}from"./index-Zh1_nchr.js";var n=t(e());function r(){return(0,n.jsx)(`div`,{children:`This is Settings`})}var i=r;export{i as default};
