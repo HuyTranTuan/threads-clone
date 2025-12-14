@@ -7,7 +7,7 @@ import {
   syncLikeFromAPI,
   toggleLikeOptimistic,
 } from "./postSlice";
-import { postServices } from "@/services";
+import { postService } from "@/services";
 
 export const useToggleLike = (postId) => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ export const useToggleLike = (postId) => {
     try {
       //Update UI luôn ko cần qua API
       dispatch(toggleLikeOptimistic(postId));
-      const response = await postServices.likePost(postId);
+      const response = await postService.likePost(postId);
 
       //Nếu API thành công sẽ đồng bộ
       if (response.success && response.data) {

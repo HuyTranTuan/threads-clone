@@ -8,8 +8,7 @@ import { toast } from "sonner";
 
 import { Textarea } from "@/components/ui/textarea";
 import { Spinner } from "@/components/ui/spinner";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { postServices, interactionsServices } from "@/services";
+import { postService, interactionsServices } from "@/services";
 import { selectUser } from "@/features/auth";
 import { updatePost } from "@/features/feed";
 import { createReplySchema } from "@/utils/validators";
@@ -46,7 +45,7 @@ function ReplyForm({ post, onClose, onReplySuccess }) {
     try {
       setLoading(true);
       const replyResponse = await interactionsServices.reply(post.id, data);
-      const response = await postServices.getReplies(post.id);
+      const response = await postService.getReplies(post.id);
       const updateRepliesCount = response.data.length;
       dispatch(
         updatePost({

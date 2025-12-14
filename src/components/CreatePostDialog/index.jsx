@@ -15,7 +15,7 @@ import { addPostToFeed, updatePost } from "@/features/feed";
 import PostForm from "./components/PostForm";
 import ThreadHint from "./components/ThreadHint";
 import DialogFooter from "./components/DialogFooter";
-import { interactionsServices, postServices } from "@/services";
+import { interactionsServices, postService } from "@/services";
 
 const FORM_ID = "create-post-form";
 
@@ -120,7 +120,7 @@ const CreatePostDialog = ({
 
       // Handle EDIT mode
       if (mode === "edit" && editPost) {
-        const response = await postServices.updatePost(editPost.id, postData);
+        const response = await postService.updatePost(editPost.id, postData);
         dispatch(updatePost(response));
         toast.success(t("edit_successed"));
         handleClose();
@@ -162,7 +162,7 @@ const CreatePostDialog = ({
         return;
       }
 
-      const response = await postServices.createPost(postData);
+      const response = await postService.createPost(postData);
       dispatch(addPostToFeed(response));
       toast.success(t("post_successed"));
       handleClose();

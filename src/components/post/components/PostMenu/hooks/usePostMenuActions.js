@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { selectIsAuthenticated, selectUser } from "@/features/auth";
 import { removePostFromFeed, removePostsByUserId } from "@/features/feed";
-import { postServices, userServices } from "@/services";
+import { postService, userServices } from "@/services";
 
 // Check if post is editable (within 15 minutes of creation)
 const isPostEditable = (post) => {
@@ -61,7 +61,7 @@ export function usePostMenuActions(post) {
     }
     try {
       setIsLoading(true);
-      await postServices.savePost(post.id);
+      await postService.savePost(post.id);
       const newSavedState = !isSaved;
       setIsSaved(newSavedState);
       toast.success(newSavedState ? t("saved") : t("unsave"));
@@ -81,7 +81,7 @@ export function usePostMenuActions(post) {
     }
     try {
       setIsLoading(true);
-      await postServices.hide(post.id);
+      await postService.hide(post.id);
       dispatch(removePostFromFeed(post.id));
       toast.success(t("hidden"));
     } catch (error) {
@@ -165,7 +165,7 @@ export function usePostMenuActions(post) {
   const handleReportSubmit = async (reason, description) => {
     try {
       setIsLoading(true);
-      await postServices.report({ id: post.id, reason, description });
+      await postService.report({ id: post.id, reason, description });
       toast.success(t("reported"));
       setReportDialogOpen(false);
     } catch (error) {
@@ -184,7 +184,7 @@ export function usePostMenuActions(post) {
   const handleDeleteConfirm = async () => {
     try {
       setIsLoading(true);
-      await postServices.deletePost(post.id);
+      await postService.deletePost(post.id);
       dispatch(removePostFromFeed(post.id));
       toast.success(t("deleted"));
       setDeleteDialogOpen(false);

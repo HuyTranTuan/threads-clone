@@ -23,7 +23,7 @@ import {
   selectPage,
   selectPosts,
 } from "@/features/feed";
-import { postServices } from "@/services";
+import { postService } from "@/services";
 import Loading from "@/components/Loading";
 
 const Home = () => {
@@ -48,7 +48,7 @@ const Home = () => {
       dispatch(setLoading(true));
 
       try {
-        const response = await postServices.getFeed(currentFeedType, 1);
+        const response = await postService.getFeed(currentFeedType, 1);
 
         // Lấy data từ response
         const feedPosts = response.data || [];
@@ -83,7 +83,7 @@ const Home = () => {
 
     try {
       const nextPage = currentPage + 1;
-      const response = await postServices.getFeed(currentFeedType, nextPage);
+      const response = await postService.getFeed(currentFeedType, nextPage);
 
       const newPosts = response.data || [];
       const pagination = response.pagination;

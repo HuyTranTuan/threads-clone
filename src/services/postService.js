@@ -18,7 +18,7 @@ export const getFeed = createAsyncThunk(
   },
 );
 
-export const postServices = {
+export const postService = {
   getFeed: async (feedType = "for_you", page = 1) => {
     const response = await http.get("/posts/feed", {
       params: {
@@ -95,7 +95,7 @@ export const postServices = {
     return formData;
   },
   updatePost: async (id, data) => {
-    const formData = postServices._buildFormData(data);
+    const formData = postService._buildFormData(data);
 
     const response = await http.post(`/posts/${id}`, formData);
     return response.data;

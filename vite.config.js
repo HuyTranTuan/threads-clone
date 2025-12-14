@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), jsconfigPaths()],
-  base: "/f8-zoom-module-3",
+  base: "/threads-clone",
   resolve: {
     alias: {
       "@components": path.resolve(__dirname, "./src/components"),
