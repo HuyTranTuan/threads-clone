@@ -1,5 +1,3 @@
-// ...existing code...
-
 # 🧵 Threads Clone — Hướng dẫn chạy dự án (Vite + React)
 
 Tài liệu ngắn gọn và đầy đủ để cài đặt, chạy và deploy dự án React (Vite + Tailwind + Shadcn UI).
