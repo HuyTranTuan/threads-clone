@@ -7,7 +7,7 @@ function SearchTabs({ activeMode, onChange }) {
   const { t } = useTranslation();
 
   return (
-    <div className="flex border-b border-border">
+    <div className="flex border-b border-border" id="SearchTabs">
       {SEARCH_MODES.map((mode) => (
         <button
           key={mode}

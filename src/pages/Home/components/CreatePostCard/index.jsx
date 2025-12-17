@@ -2,18 +2,16 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { selectIsAuthenticated, selectUser } from "@/features/auth";
+import { selectUser } from "@/features/auth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import CreatePostDialog from "@/components/CreatePostDialog";
 import AvatarRounded from "@/components/post/components/AvatarRounded";
-import SignUpModal from "@/features/auth/components/SignUpModal";
 
 function CreatePostCard() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const currentUser = useSelector(selectUser);
-  const isAuthenticated = useSelector(selectIsAuthenticated);
 
   const handleOpenDialog = () => {
     setIsOpen(true);
@@ -41,11 +39,7 @@ function CreatePostCard() {
         </CardContent>
       </Card>
 
-      {isAuthenticated ? (
-        <CreatePostDialog open={isOpen} onOpenChange={setIsOpen} />
-      ) : (
-        <SignUpModal open={isOpen} onOpenChange={setIsOpen} />
-      )}
+      <CreatePostDialog open={isOpen} onOpenChange={setIsOpen} />
     </>
   );
 }

@@ -11,6 +11,7 @@ import { postDetailSlice } from "@/features/postDetail";
 import { searchSlice } from "@/features/search";
 import { themeSlice } from "@/features/theme";
 import { languageSlice } from "@/features/language";
+import { columnsSlice } from "@/features/columns";
 
 const transforms = import.meta.env.DEV
   ? []
@@ -34,6 +35,7 @@ const persistConfig = {
     searchSlice.reducerPath,
     themeSlice.reducerPath,
     languageSlice.reducerPath,
+    columnsSlice.reducerPath,
   ],
   transforms,
 };
@@ -53,6 +55,7 @@ const rootReducer = combineReducers({
   [searchSlice.reducerPath]: searchSlice.reducer,
   [themeSlice.reducerPath]: themeSlice.reducer,
   [languageSlice.reducerPath]: languageSlice.reducer,
+  [columnsSlice.reducerPath]: columnsSlice.reducer,
 });
 
 const store = configureStore({

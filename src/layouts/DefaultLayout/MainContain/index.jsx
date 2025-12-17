@@ -8,7 +8,7 @@ function MainContain({ shouldShowAuthCard }) {
   const { t } = useTranslation();
   return (
     <div
-      className="ml-0 w-full !md:max-w-[calc(100%-100px)] h-[calc(100%-100px)]! md:h-full! flex justify-center! gap-7! md:pr-8! md:mt-3! relative"
+      className="ml-0 w-full h-[calc(100%-70px)] md:h-full! flex justify-center! gap-7! relative"
       id="MainContent"
     >
       <Outlet />

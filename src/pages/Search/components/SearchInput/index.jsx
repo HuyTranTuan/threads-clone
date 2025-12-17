@@ -39,14 +39,14 @@ function SearchInput({ value, onChange, onSearch }) {
   }, [onChange]);
 
   return (
-    <div className="relative">
-      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+    <div className="relative p-4!">
+      <Search className="absolute left-10 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       <Input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder={t("write_sth")}
-        className="pl-10 pr-10 h-11 bg-secondary/50 border-none rounded-xl focus-visible:ring-1"
+        className="pl-15 pr-10 h-11 bg-secondary/50 border-none rounded-xl focus-visible:ring-1"
       />
       {inputValue && (
         <button

@@ -87,9 +87,15 @@ function Search() {
         </p>
       );
     }
-    return topics.map((topic) => (
-      <TopicResultCard key={topic.id} topic={topic} />
-    ));
+    return (
+      <div className="flex flex-col gap-1 divide-y! divide-border! h-[calc(100%-110px)]! md:h-[calc(100%-130px)]!">
+        <div className="h-full! overflow-y-auto!">
+          {topics.map((topic) => (
+            <TopicResultCard key={topic.id} topic={topic} />
+          ))}
+        </div>
+      </div>
+    );
   };
 
   // Render users
@@ -101,7 +107,15 @@ function Search() {
         </p>
       );
     }
-    return users.map((user) => <UserResultCard key={user.id} user={user} />);
+    return (
+      <div className="flex flex-col gap-1 divide-y! divide-border! h-[calc(100%-110px)]! md:h-[calc(100%-130px)]!">
+        <div className="h-full! overflow-y-auto!">
+          {users.map((user) => (
+            <UserResultCard key={user.id} user={user} />
+          ))}
+        </div>
+      </div>
+    );
   };
 
   // Render results based on mode
@@ -113,7 +127,6 @@ function Search() {
         return renderTopics();
       case "users":
         return renderUsers();
-      case "all":
       default: {
         // Show both topics and users
         const hasTopics = topics.length > 0;
@@ -128,28 +141,34 @@ function Search() {
         }
 
         return (
-          <>
+          <div className="flex flex-col gap-1 divide-y! divide-border! h-[calc(100%-110px)]! md:h-[calc(100%-130px)]!">
             {hasTopics && (
-              <div>
-                <h3 className="px-4! py-2! text-sm! font-semibold! text-muted-foreground!">
-                  {t("topics")}
-                </h3>
-                {topics.slice(0, 3).map((topic) => (
-                  <TopicResultCard key={topic.id} topic={topic} />
-                ))}
-              </div>
+              <h3 className="px-4! py-2! text-sm! font-semibold! text-muted-foreground!">
+                {t("topics")}
+              </h3>
             )}
             {hasUsers && (
-              <div>
-                <h3 className="px-4! py-2! text-sm! font-semibold! text-muted-foreground!">
-                  {t("users")}
-                </h3>
-                {users.map((user) => (
-                  <UserResultCard key={user.id} user={user} />
-                ))}
-              </div>
+              <h3 className="px-4! py-2! text-sm! font-semibold! text-muted-foreground!">
+                {t("users")}
+              </h3>
             )}
-          </>
+            <div className="h-full! overflow-y-auto!">
+              {hasTopics && (
+                <div className="">
+                  {topics.slice(0, 3).map((topic) => (
+                    <TopicResultCard key={topic.id} topic={topic} />
+                  ))}
+                </div>
+              )}
+              {hasUsers && (
+                <div className="">
+                  {users.map((user) => (
+                    <UserResultCard key={user.id} user={user} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         );
       }
     }
@@ -158,22 +177,18 @@ function Search() {
   return (
     <div
       id="Search"
-      className="w-full max-w-[700px]! flex justify-center px-6! md:px-0!"
+      className="w-full max-w-[700px]! h-full! flex justify-center px-6! md:px-0!"
     >
-      <div className="w-full! md:min-w-[380px] h-[calc(100%-60px)]">
-        <div className="p-4!">
-          <SearchInput
-            value={query}
-            onChange={(val) => dispatch(setSearchQuery(val))}
-            onSearch={handleSearch}
-          />
-        </div>
+      <div className="w-full! h-full md:min-w-[380px]">
+        <SearchInput
+          value={query}
+          onChange={(val) => dispatch(setSearchQuery(val))}
+          onSearch={handleSearch}
+        />
 
         <SearchTabs activeMode={searchMode} onChange={handleModeChange} />
 
-        <div className="flex flex-col gap-1 divide-y! divide-border!">
-          {renderResults()}
-        </div>
+        {renderResults()}
       </div>
     </div>
   );
