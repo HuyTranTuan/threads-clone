@@ -131,7 +131,7 @@ const Home = () => {
     <div
       id="Home"
       className={cn(
-        "w-[calc(100%-50px)] h-full! flex gap-5! overflow-x-auto items-center px-6! md:px-0!",
+        "w-full md:w-[calc(100%-50px)] h-full! flex gap-5! overflow-x-auto items-center px-6! md:px-0!",
         currentColumns.length >= 3 ? "" : "justify-center",
         !isAuthenticated ? " max-w-[700px]!" : "",
       )}

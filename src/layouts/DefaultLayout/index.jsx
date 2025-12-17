@@ -95,7 +95,7 @@ function DefaultLayout() {
 
   return (
     <div
-      className="relative w-[calc(100%-80px)] bg-background! h-[calc(100dvh-20px)]!"
+      className="relative w-full md:w-[calc(100%-80px)] bg-background! h-[calc(100dvh-20px)]!"
       id="DefaultLayout"
     >
       <SidebarProvider className="h-full!">

@@ -177,7 +177,7 @@ function Search() {
   return (
     <div
       id="Search"
-      className="w-full max-w-[700px]! h-full! flex justify-center px-6! md:px-0!"
+      className="w-full md:w-[calc(100%-50px)] max-w-[700px]! h-full! flex justify-center px-6! md:px-0!"
     >
       <div className="w-full! h-full md:min-w-[380px]">
         <SearchInput
