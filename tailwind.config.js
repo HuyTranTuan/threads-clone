@@ -6,7 +6,8 @@ module.exports = {
         "semi-transparent-white": "rgba(255, 255, 255, 0.25)",
       },
       screens: {
-        tablet: "700px",
+        short: { raw: "(max-height: 400px)" },
+        tall: { raw: "(min-height: 600px)" },
       },
     },
   },

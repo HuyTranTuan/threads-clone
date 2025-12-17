@@ -4,11 +4,12 @@ import { Provider as ReduxProvider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 import App from "@/App";
-import ErrorBoundary from "./components/ErrorBoundary";
 import { store, persistor } from "./store/stores";
 import "@/index.css";
 import i18n from "@/i18n/i18n";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { LanguageProvider } from "./components/LanguageProvider";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Loading from "./components/Loading";
 
 createRoot(document.getElementById("root")).render(
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")).render(
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Suspense fallback={<Loading />}>
+          <LanguageProvider />
           <ThemeProvider />
           <App />
         </Suspense>

@@ -23,9 +23,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import MainSidebarLink from "@/layouts/DefaultLayout/MainSidebar/MainSidebarLink";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";
 import { selectIsAuthenticated, toggleSignUpModal } from "@/features/auth";
 import CreatePostDialog from "@/components/CreatePostDialog";
+import { selectSavedLanguage, setLanguage } from "@/features/language";
+import { cn } from "@/lib/utils";
 
 function MainSidebar({ home, search, activites, account }) {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ function MainSidebar({ home, search, activites, account }) {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const [screenWidth, setCreenWidth] = useState(window.screen.width);
   const [isOpenCreatePostDialog, setIsOpenCreatePostDialog] = useState(false);
+  const currentLanguage = useSelector(selectSavedLanguage);
 
   const handleClickTogglgSignupModal = () => {
     if (!isAuthenticated) {
@@ -44,6 +47,8 @@ function MainSidebar({ home, search, activites, account }) {
 
   const handleLanguageChange = (lang) => {
     i18n.changeLanguage(lang);
+    dispatch(setLanguage(lang));
+    localStorage.setItem("threads_language", lang);
   };
 
   useEffect(() => {
@@ -60,20 +65,17 @@ function MainSidebar({ home, search, activites, account }) {
           <SidebarGroupLabel className="w-full h-full">
             <Logo path={"/"} />
           </SidebarGroupLabel>
-
+        </SidebarGroup>
+        <SidebarGroup className="">
           <SidebarGroupContent>
             <SidebarMenu className="">
               <MainSidebarLink navigate={home} />
               <MainSidebarLink navigate={search} />
               <Button
-                className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6 rounded-xl bg-sidebar-accent group"
+                className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6! rounded-xl bg-sidebar-accent"
                 onClick={handleClickTogglgSignupModal}
               >
-                <PlusIcon
-                  className={
-                    "text-(--systemtext) group-hover:text-sidebar-accent-foreground"
-                  }
-                />
+                <PlusIcon className={"text-foreground "} />
               </Button>
               <MainSidebarLink navigate={activites} />
               <MainSidebarLink navigate={account} />
@@ -88,18 +90,28 @@ function MainSidebar({ home, search, activites, account }) {
               <DropdownMenuTrigger asChild>
                 <LanguagesIcon className="stroke-2 text-normaltext size-6 hover:cursor-pointer" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="absolute flex bottom-full left-[30px] overflow-hidden p-2.5">
+              <DropdownMenuContent className="absolute flex bottom-full left-[30px] p-2.5!">
                 <DropdownMenuItem
-                  className="px-3! py-2.5! cursor-pointer !hover:bg-systemtext grow flex justify-center"
-                  onClick={() => handleLanguageChange("en")}
-                >
-                  EN
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="px-3! py-2.5! cursor-pointer !hover:bg-systemtext grow flex justify-center"
+                  className={cn(
+                    "px-3! py-2.5! cursor-pointer! grow flex justify-center  hover:bg-accent-foreground! hover:text-background!",
+                    currentLanguage === "vn"
+                      ? "bg-foreground! text-background!"
+                      : "bg-background! text-foreground!",
+                  )}
                   onClick={() => handleLanguageChange("vn")}
                 >
                   VN
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  className={cn(
+                    "px-3! py-2.5! cursor-pointer! grow flex justify-center  hover:bg-accent-foreground! hover:text-background!",
+                    currentLanguage === "en"
+                      ? "bg-foreground! text-background!"
+                      : "bg-background! text-foreground!",
+                  )}
+                  onClick={() => handleLanguageChange("en")}
+                >
+                  EN
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -112,6 +124,7 @@ function MainSidebar({ home, search, activites, account }) {
           </SidebarGroupLabel>
         </SidebarGroup>
       </SidebarContent>
+
       <CreatePostDialog
         open={isOpenCreatePostDialog}
         onOpenChange={setIsOpenCreatePostDialog}

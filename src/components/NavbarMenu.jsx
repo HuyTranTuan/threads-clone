@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
 import { t } from "i18next";
+import { cn } from "@/lib/utils";
+import { Link, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   DropdownMenu,
@@ -18,12 +20,13 @@ import {
 import { SunIcon } from "@/components/ui/icons/lucide-sun";
 import { MoonIcon } from "@/components/ui/icons/lucide-moon";
 import { logout, selectIsAuthenticated } from "@/features/auth";
-import { Link, useNavigate } from "react-router";
+import { selectSavedTheme, setDarkMode, setLightMode } from "@/features/theme";
 
 function NavbarMenu({ children }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  const currentTheme = useSelector(selectSavedTheme);
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
@@ -31,6 +34,15 @@ function NavbarMenu({ children }) {
     localStorage.removeItem("user");
     dispatch(logout());
     navigate("/auth/login");
+  };
+
+  const handleSetDarkMode = () => {
+    dispatch(setDarkMode());
+    localStorage.setItem("threads_theme", "dark");
+  };
+  const handleSetLightMode = () => {
+    dispatch(setLightMode());
+    localStorage.setItem("threads_theme", "light");
   };
 
   return (
@@ -42,18 +54,30 @@ function NavbarMenu({ children }) {
             <DropdownMenuSubTrigger className="flex! justify-between px-4! py-4.5!">
               {t("appearance")}
             </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent className="px-3! py-4! min-w-[140px]!">
+            <DropdownMenuSubContent className="px-3! py-4! min-w-[150px]! border! border-(--systemtext)!">
               <DropdownMenuLabel className="text-center mb-2.5!">
                 {t("appearance")}
               </DropdownMenuLabel>
               <DropdownMenuGroup className="flex h-8 items-center">
                 <DropdownMenuItem
-                  className={`flex-1 h-full justify-center [&>svg]:size-5`}
+                  className={cn(
+                    "flex-1 h-full justify-center [&>svg]:size-6! hover:bg-accent-foreground! hover:text-background!",
+                    currentTheme === false
+                      ? "bg-foreground! text-background!"
+                      : "bg-background! text-foreground!",
+                  )}
+                  onClick={handleSetLightMode}
                 >
                   <SunIcon className="w-full h-full" />
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                  className={`flex-1 h-full justify-center [&>svg]:size-5`}
+                  className={cn(
+                    "flex-1 h-full justify-center [&>svg]:size-6! hover:bg-accent-foreground! hover:text-background!",
+                    currentTheme === true
+                      ? "bg-foreground! text-background!"
+                      : "bg-background! text-foreground!",
+                  )}
+                  onClick={handleSetDarkMode}
                 >
                   <MoonIcon className="w-full h-full" />
                 </DropdownMenuItem>

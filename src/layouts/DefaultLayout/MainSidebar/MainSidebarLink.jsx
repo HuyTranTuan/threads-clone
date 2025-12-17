@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 import { selectIsAuthenticated, toggleSignUpModal } from "@/features/auth";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";
 
 function MainSidebarLink({ navigate }) {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function MainSidebarLink({ navigate }) {
           isAuthenticated ? (
             <NavLink
               to={navigate.url}
-              className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6"
+              className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6!"
             >
               {({ isActive }) => (
                 <navigate.icon
@@ -33,7 +33,7 @@ function MainSidebarLink({ navigate }) {
             </NavLink>
           ) : (
             <Button
-              className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6"
+              className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6! bg-transparent"
               onClick={handleShowSignUpModal}
             >
               <navigate.icon className={"text-(--systemtext)"} />
@@ -42,7 +42,7 @@ function MainSidebarLink({ navigate }) {
         ) : (
           <NavLink
             to={navigate.url}
-            className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6"
+            className="flex justify-center items-center p-1.5 w-15 h-15 [&>svg]:size-6!"
           >
             {({ isActive }) => (
               <navigate.icon

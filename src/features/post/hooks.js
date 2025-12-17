@@ -43,12 +43,6 @@ export const useToggleLike = (postId) => {
                 : oldState.oldCount + (oldState.wasLiked ? -1 : 1), // Fallback: tính từ oldCount
           }),
         );
-      } else {
-        // Nếu response không có success hoặc data, vẫn giữ optimistic update
-        if (import.meta.env.DEV) {
-          console.warn("API response không có success hoặc data:", response);
-        }
-        // Không cần làm gì, optimistic update đã được thực hiện
       }
     } catch (error) {
       // rollback nếu fail

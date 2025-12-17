@@ -16,7 +16,7 @@ import { SearchIcon } from "@/components/ui/icons/lucide-search";
 import { HeartIcon } from "@/components/ui/icons/lucide-heart";
 import { UserIcon } from "@/components/ui/icons/lucide-user";
 import { PlusIcon } from "@/components/ui/icons/lucide-plus";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";
 import MainBottomLink from "./MainSidebar/MainBottomLink";
 import CreatePostDialog from "@/components/CreatePostDialog";
 

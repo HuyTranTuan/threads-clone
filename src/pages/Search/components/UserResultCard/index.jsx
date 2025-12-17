@@ -8,6 +8,7 @@ import { selectIsAuthenticated } from "@/features/auth";
 import { followUser, unfollowUser } from "@/features/search/searchSlice";
 import SignUpModal from "@/features/auth/components/SignUpModal";
 import AvatarRounded from "@/components/post/components/AvatarRounded";
+import { toast } from "sonner";
 
 function UserResultCard({ user }) {
   const { t } = useTranslation();
@@ -26,11 +27,13 @@ function UserResultCard({ user }) {
     try {
       if (user.is_following) {
         await dispatch(unfollowUser(user.id)).unwrap();
+        toast.success(t("followed"));
       } else {
         await dispatch(followUser(user.id)).unwrap();
+        toast.success(t("unfollowed"));
       }
     } catch (error) {
-      console.error("Follow action failed:", error);
+      toast.error(t("follow_failed", { message: error }));
     } finally {
       setIsLoading(false);
     }

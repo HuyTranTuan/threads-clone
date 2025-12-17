@@ -25,16 +25,19 @@ function Login() {
   }, [currentUser, navigate, params]);
 
   return (
-    <div className="max-w-[370px] min-w-[300px] p-6! mx-auto! flex flex-col gap-2 absolute top-full left-[50%] -translate-x-[50%] translate-y-[65%]">
+    <div className="max-w-[370px] min-w-[300px] p-6!flex flex-col gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className="flex flex-col gap-2">
-        <h1 className="text-center text-base sm:text-lg! sm:my-4 text-foreground font-bold! text-[16px]">
+        <h1 className="text-center text-xl! sm:my-4 text-foreground font-bold!">
           {t("login_threads")}
         </h1>
 
         <LoginForm />
 
-        <div className="text-center">
-          <Link to="/auth/forgot-password" className="text-sm text-foreground">
+        <div className="text-center mt-2.5!">
+          <Link
+            to="/auth/forgot-password"
+            className="text-foreground font-bold! hover:text-(--systemtext)"
+          >
             {t("forgot_psw")}
           </Link>
         </div>
@@ -51,12 +54,15 @@ function Login() {
         {t("havent_got_account")}
         <Link
           to="/auth/register"
-          className="text-foreground font-semibold hover:underline"
+          className="text-foreground font-bold! hover:text-(--systemtext)"
         >
           {t("register")}
         </Link>
         {t("or")}
-        <Link to="/" className="text-foreground font-semibold hover:underline">
+        <Link
+          to="/"
+          className="text-foreground font-bold! hover:text-(--systemtext)"
+        >
           {t("home")}
         </Link>
       </div>

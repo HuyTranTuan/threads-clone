@@ -1,14 +1,23 @@
+import { useTranslation } from "react-i18next";
+import { Link, Outlet } from "react-router";
+
+import { Button } from "@/components/ui/button";
 import AuthCard from "@/features/auth/components/AuthCard";
-import { Outlet } from "react-router";
 
 function MainContain({ shouldShowAuthCard }) {
+  const { t } = useTranslation();
   return (
     <div
-      className="ml-0 md:ml-[30px]! w-full! md:w-[calc(100%-20px)]! h-[calc(100%-70px)]! md:h-full! flex justify-around! gap-6! md:pr-8! md:mt-3!"
+      className="ml-0 w-full !md:max-w-[calc(100%-100px)] h-[calc(100%-100px)]! md:h-full! flex justify-center! gap-7! md:pr-8! md:mt-3! relative"
       id="MainContent"
     >
       <Outlet />
       <AuthCard showAuthCard={shouldShowAuthCard} />
+      <Button className="px-3.5 py-1.5 absolute top-3 right-3 block lg:hidden">
+        <Link to="auth/login" className="text-base! flex justify-center">
+          {t("pure_login")}
+        </Link>
+      </Button>
     </div>
   );
 }

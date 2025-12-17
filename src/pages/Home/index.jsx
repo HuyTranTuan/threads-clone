@@ -113,9 +113,9 @@ const Home = () => {
   return (
     <div
       id="Home"
-      className="w-full! md:w-[calc(100%-80px)]! flex justify-center px-6! md:px-0!"
+      className="w-full max-w-[700px]! flex justify-center px-6! md:px-0!"
     >
-      <div className="w-full! md:min-w-[380px] md:max-w-[700px]! h-[calc(100%-60px)]">
+      <div className="w-full! md:min-w-[380px] h-[calc(100%-60px)]">
         <FeedHeader
           currentFeedType={currentFeedType}
           onFeedTypeChange={setCurrentFeedType}

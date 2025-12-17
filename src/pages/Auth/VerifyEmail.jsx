@@ -83,7 +83,7 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div className="max-w-[370px] min-w-[300px] p-6! flex flex-col gap-2! absolute! top-full! left-[50%]! -translate-x-[50%] translate-y-full">
+    <div className="max-w-[370px] min-w-[300px] p-6!flex flex-col gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       {(status === "verifying" || loading) && (
         <div className="flex flex-col gap-2.5! items-center">
           <Spinner className="w-12 h-12" />
@@ -93,10 +93,12 @@ const VerifyEmail = () => {
 
       {status === "not-verified" && (
         <div className="flex flex-col items-center gap-2.5!">
-          <h1 className="text-2xl! font-bold! text-foreground mb-2!">
+          <h1 className="text-center text-2xl! sm:my-4 text-foreground font-bold!">
             {t("verify_email_title")}
           </h1>
-          <p className="text-muted-foreground mb-6 text-center">{message}</p>
+          <p className="text-center text-sm! text-(--systemtext) mb-6">
+            {message}
+          </p>
           <Button
             onClick={handleResendEmail}
             disabled={isResending}

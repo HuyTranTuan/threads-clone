@@ -2,12 +2,12 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
 
 import { forgotPasswordSchema } from "@/utils/validators";
 import { Input } from "@/components/ui/input";
 import { authServices } from "@/services";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
 
 const ForgotPasswordForm = () => {
   const { t } = useTranslation();
@@ -64,7 +64,7 @@ const ForgotPasswordForm = () => {
 
       <Button
         type="submit"
-        className="w-full h-12 bg-foreground! text-background! !hover:bg-systemtext cursor-pointer rounded-2xl"
+        className="w-full h-12 bg-foreground! text-background! cursor-pointer rounded-2xl"
         disabled={isLoading}
       >
         {isLoading ? t("sending") : t("resend_link_new_psw")}

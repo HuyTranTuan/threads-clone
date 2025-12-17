@@ -2,9 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem("threads_theme");
-  if (savedTheme === "dark") return true;
-  if (savedTheme === "light") return false;
-  return savedTheme === "dark" ? true : false;
+  if (!savedTheme) {
+    localStorage.setItem("threads_theme", "light");
+    return false;
+  }
+  if (savedTheme === "light") {
+    return false;
+  }
+  return true;
 };
 
 const initialState = {

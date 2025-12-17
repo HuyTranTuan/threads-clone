@@ -7,13 +7,13 @@ import { Separator } from "@/components/ui/separator";
 function ResetPassword() {
   const { t } = useTranslation();
   return (
-    <div className="max-w-[370px] min-w-[300px] p-6! mx-auto! flex flex-col gap-2 absolute top-full left-[50%] -translate-x-[50%] translate-y-[70%]">
+    <div className="max-w-[370px] min-w-[300px] p-6!flex flex-col gap-2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <div className="flex flex-col gap-2">
-        <h1 className="text-center text-base sm:text-lg sm:my-4 text-foreground font-bold! text-[16px]">
+        <h1 className="text-center text-xl! sm:my-4 text-foreground font-bold!">
           {t("forgot_psw")}
         </h1>
 
-        <p className="text-center text-sm text-foreground">
+        <p className="text-center text-sm! text-(--systemtext) mb-6!">
           {t("enter_email_recive_link")}
         </p>
 
@@ -27,7 +27,10 @@ function ResetPassword() {
         </div>
 
         <p className="text-center">
-          <Link to="/auth/login" className="text-foreground font-semibold">
+          <Link
+            to="/auth/login"
+            className="text-foreground font-bold! hover:text-(--systemtext)"
+          >
             {t("back_to_login")}
           </Link>
         </p>

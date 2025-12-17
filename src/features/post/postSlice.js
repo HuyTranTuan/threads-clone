@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "sonner";
 
 const initialState = {
   selectedPost: null, //Post đang dc xem chi tiết
@@ -35,14 +36,7 @@ export const postSlice = createSlice({
         state.likesCount[postId] = currentCount + 1;
       }
 
-      // Lưu vào localStorage để persist khi F5 (optimistic update)
-      try {
-        localStorage.setItem("liked_posts", JSON.stringify(state.likedPosts));
-      } catch (error) {
-        if (import.meta.env.DEV) {
-          console.error("Error saving likedPosts to localStorage:", error);
-        }
-      }
+      localStorage.setItem("liked_posts", JSON.stringify(state.likedPosts));
     },
 
     syncLikeFromAPI: (state, action) => {
@@ -66,14 +60,7 @@ export const postSlice = createSlice({
       // Luôn cập nhật likesCount từ API
       state.likesCount[postId] = likesCount;
 
-      // Lưu vào localStorage để persist khi F5
-      try {
-        localStorage.setItem("liked_posts", JSON.stringify(state.likedPosts));
-      } catch (error) {
-        if (import.meta.env.DEV) {
-          console.error("Error saving likedPosts to localStorage:", error);
-        }
-      }
+      localStorage.setItem("liked_posts", JSON.stringify(state.likedPosts));
     },
 
     //Trả lại state nếu API thất bại
@@ -116,14 +103,7 @@ export const postSlice = createSlice({
         }
       });
 
-      // Lưu vào localStorage sau khi restore
-      try {
-        localStorage.setItem("liked_posts", JSON.stringify(state.likedPosts));
-      } catch (error) {
-        if (import.meta.env.DEV) {
-          console.error("Error saving likedPosts to localStorage:", error);
-        }
-      }
+      localStorage.setItem("liked_posts", JSON.stringify(state.likedPosts));
     },
 
     restoreLikedPostsFromStorage: (state) => {
@@ -139,9 +119,7 @@ export const postSlice = createSlice({
           });
         }
       } catch (error) {
-        if (import.meta.env.DEV) {
-          console.error("Error restoring likedPosts from localStorage:", error);
-        }
+        toast.error("Error restoring:", error);
       }
     },
 

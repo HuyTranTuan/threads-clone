@@ -1,52 +1,53 @@
-import { useEffect, useState } from 'react';
-import useDebounce from './useDebounce';
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
-function useAsyncValidation({value, validateFn, errorMessage, options = {}}) {
-    const { delay = 500, formatValidator = null } =  options;
-    const [error, setError] = useState('');
+import useDebounce from "./useDebounce";
 
-    const debouncedValue = useDebounce(value, delay);
+function useAsyncValidation({ value, validateFn, errorMessage, options = {} }) {
+  const { delay = 500, formatValidator = null } = options;
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        setError('');
-    }, [value]);
+  const debouncedValue = useDebounce(value, delay);
 
-    useEffect(() => {
-        if(!debouncedValue) return;
+  useEffect(() => {
+    setError("");
+  }, [value]);
 
-        let isCurrent = true;
+  useEffect(() => {
+    if (!debouncedValue) return;
 
-        if(formatValidator) {
-            const isValidFormat = formatValidator(debouncedValue);
-            if (!isValidFormat) return;
+    let isCurrent = true;
+
+    if (formatValidator) {
+      const isValidFormat = formatValidator(debouncedValue);
+      if (!isValidFormat) return;
+    }
+
+    const result = async () => {
+      try {
+        const response = await validateFn(debouncedValue);
+        const { available } = response.data;
+
+        if (isCurrent) {
+          if (available) {
+            setError("");
+          } else {
+            setError(errorMessage);
+          }
         }
+      } catch (error) {
+        toast.error("Validation error:", error);
+      }
+    };
 
-        const result = async () => {
-            try {
-                const response = await validateFn(debouncedValue);
-                const { available } = response.data;
+    result();
 
-                if (isCurrent) {
-                    if (available) {
-                        setError('');  
-                    } else {
-                        setError(errorMessage);  
-                    }
-                }
-            } catch (error) {
-                console.error('Validation error:', error);
-            }
-        }
+    return () => {
+      isCurrent = false;
+    };
+  }, [debouncedValue, validateFn, errorMessage, formatValidator]);
 
-        result();
-
-        return () => {
-            isCurrent = false;
-        }
-
-    }, [debouncedValue, validateFn, errorMessage, formatValidator]);
-    
-    return error;
+  return error;
 }
 
 export default useAsyncValidation;

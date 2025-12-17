@@ -9,11 +9,11 @@ const AuthCard = ({ showAuthCard }) => {
 
   return (
     <div
-      className={`min-w-[300px] relative hidden ${showAuthCard ? "md:block" : "md:hidden"}`}
+      className={`min-w-[250px] relative hidden ${showAuthCard ? "lg:block" : ""}`}
     >
       <Card
         className={
-          "absolute top-15 rounded-2xl border-2 border-(--systemtext)! bg-secondary! shadow-sm overflow-hidden p-6!"
+          "absolute top-5 rounded-2xl border-2 border-(--systemtext)! bg-secondary! shadow-sm overflow-hidden p-6!"
         }
       >
         {/* Nội dung giữ nguyên */}

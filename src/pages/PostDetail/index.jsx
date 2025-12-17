@@ -70,10 +70,10 @@ const PostDetail = () => {
 
   return (
     <div
-      className="w-full! md:w-[calc(100%-80px)]! flex justify-center px-6! md:px-0!"
+      className="w-full max-w-[700px]! flex justify-center px-6! md:px-0!"
       id="PostDetail"
     >
-      <div className="w-full! md:min-w-[380px] md:max-w-[700px]! h-100vh! rounded-t-2xl border! border-(--systemtext)! p-5! mt-4!">
+      <div className="w-full! md:min-w-[380px] h-100vh! rounded-t-2xl border! border-(--systemtext)! p-5! mt-4!">
         {/* Main Post */}
         {loading ? (
           <PostCardSkeleton />

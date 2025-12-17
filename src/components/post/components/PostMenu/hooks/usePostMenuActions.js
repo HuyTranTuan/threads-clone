@@ -50,11 +50,6 @@ export function usePostMenuActions(post) {
 
   // Save/Unsave handler (API is toggle - same POST endpoint)
   const handleSave = async () => {
-    console.log("handleSave called", {
-      isAuthenticated,
-      postId: post.id,
-      isSaved,
-    });
     if (!isAuthenticated) {
       openLoginDialog();
       return;
