@@ -5,11 +5,13 @@ import { cn } from "@/lib/utils";
 import { removeColumn, selectSavedColumn } from "@/features/columns";
 import { Button } from "@/components/ui/button";
 import { Trash2Icon } from "@/components/ui/icons/lucide-trash-2";
+import { selectIsAuthenticated } from "@/features/auth";
 
 const FeedHeader = ({ currentFeedType, onFeedTypeChange, index }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const currentColumns = useSelector(selectSavedColumn);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
   const currentColumnsLength = currentColumns.length;
 
   const handldeDeleteColumn = (index) => {
@@ -30,13 +32,17 @@ const FeedHeader = ({ currentFeedType, onFeedTypeChange, index }) => {
           {t(`${currentFeedType}`)}
         </button>
       </div>
-      {currentColumnsLength > 1 && (
-        <Button
-          className="p-2! rounded-full absolute top-1/2 right-2.5 transform -translate-y-1/2 bg-red-800 hover:bg-red-500 z-20"
-          onClick={() => handldeDeleteColumn(index)}
-        >
-          <Trash2Icon className="" />
-        </Button>
+      {isAuthenticated ? (
+        currentColumnsLength > 1 && (
+          <Button
+            className="p-2! rounded-full absolute top-1/2 right-2.5 transform -translate-y-1/2 bg-red-800 hover:bg-red-500 z-20"
+            onClick={() => handldeDeleteColumn(index)}
+          >
+            <Trash2Icon className="" />
+          </Button>
+        )
+      ) : (
+        <></>
       )}
     </header>
   );

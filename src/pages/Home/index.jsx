@@ -47,6 +47,7 @@ const Home = () => {
   const currentPage = useSelector(selectPage);
   const currentColumns = useSelector(selectSavedColumn);
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  const screenWidth = window.screen.width;
 
   const [currentFeedType, setCurrentFeedType] = useState("for_you");
 
@@ -136,7 +137,7 @@ const Home = () => {
         !isAuthenticated ? " max-w-[700px]!" : "",
       )}
     >
-      {isAuthenticated ? (
+      {isAuthenticated && screenWidth >= 768 ? (
         currentColumns.map((column, index) => (
           <div
             className="w-full! h-full md:min-w-[380px] md:max-w-[700px] relative"
@@ -182,14 +183,17 @@ const Home = () => {
           </div>
         </div>
       )}
-      {isAuthenticated && (
+      {isAuthenticated && screenWidth >= 768 && (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button className="rounded-full p-2!">
               <MoreHorizontalIcon />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-fit p-2.5!" align="start">
+          <DropdownMenuContent
+            className="w-fit p-2.5! hidden md:block"
+            align="start"
+          >
             <DropdownMenuItem
               className="p-2!"
               onClick={() => handldeAddColumn("for_you")}
