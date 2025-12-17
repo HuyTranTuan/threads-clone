@@ -1,1 +1,0 @@
-import{H as e,Q as t,y as n}from"./index-Bqtm8eVw.js";var r=t(e());function i(){let e=n();return(0,r.jsx)(`div`,{children:JSON.stringify(e)})}var a=i;export{a as default};
